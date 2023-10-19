@@ -14,6 +14,7 @@ export function renderToString(template) {
   }
 
   const renderResult = template._h()
+
   let htmlString = renderResult[0]
   const expressions = renderResult[1]
   if (expressions.length > 0) {
@@ -36,7 +37,10 @@ export function renderToString(template) {
 
       const watcherReturn = expressionInstance.e()
 
-      if (typeof watcherReturn === 'string') {
+      if (
+        typeof watcherReturn !== 'object' &&
+        typeof watcherReturn !== 'function'
+      ) {
         htmlString = htmlString.replace(delimiterComment, watcherReturn)
         return
       }

@@ -30,6 +30,26 @@ test('reactive variable', async () => {
   assert.is(out, '<p>hello world</p>')
 })
 
+test('reactive variable nested', async () => {
+  const pageState = reactive({
+    count: 0,
+  })
+  const comp = html`<div
+    class="flex-[5] relative p-2 overflow-x-auto flex flex-col gap-2"
+  >
+    <div class="flex gap-2 items-center">${() => pageState.count}</div>
+  </div>`
+
+  await inlineSnapshot(
+    renderToString(comp),
+    `<div
+    class="flex-[5] relative p-2 overflow-x-auto flex flex-col gap-2"
+  >
+    <div class="flex gap-2 items-center">0</div>
+  </div>`
+  )
+})
+
 test('reactive variable, changing', async () => {
   const rVar = reactive({ message: 'hello world' })
   const tmp = html`<p>${() => rVar.message}</p>`
