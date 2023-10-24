@@ -193,4 +193,11 @@ test('nested events', async () => {
   )
 })
 
+test('function composition basic', async () => {
+  const view = () => html`<p>hello world</p>`
+  const containerView = html`${view()}`
+  const out = renderToString(containerView)
+  await inlineSnapshot(out, `<p>hello world</p>`)
+})
+
 test.run()
