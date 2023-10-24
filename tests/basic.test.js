@@ -200,4 +200,29 @@ test('function composition basic', async () => {
   await inlineSnapshot(out, `<p>hello world</p>`)
 })
 
+test('stringify nested array of templates', async () => {
+  const tables = [1, 2, 3]
+
+  const templ = html`
+    <div class="container">
+      <div class="row">
+        <div class="col">${() => tables.map(x => html`<p>${x}</p>`)}</div>
+      </div>
+    </div>
+  `
+
+  const out = renderToString(templ)
+
+  await inlineSnapshot(
+    out,
+    `
+    <div class="container">
+      <div class="row">
+        <div class="col"><p>1</p><p>2</p><p>3</p></div>
+      </div>
+    </div>
+  `
+  )
+})
+
 test.run()

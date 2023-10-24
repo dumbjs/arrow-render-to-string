@@ -63,9 +63,20 @@ function interpolateExpressions(htmlString, expressionInstance) {
 
   if (
     typeof watcherReturn !== 'object' &&
-    typeof watcherReturn !== 'function'
+    typeof watcherReturn !== 'function' &&
+    !Array.isArray(watcherReturn)
   ) {
     return htmlString.replace(delimiterComment, watcherReturn)
+  }
+
+  if (Array.isArray(watcherReturn)) {
+    const result = watcherReturn.map(x => {
+      if ('isT' in x) {
+        return renderToString(x)
+      }
+      return x
+    })
+    return result.join('')
   }
 
   if (watcherReturn && watcherReturn.isT) {
