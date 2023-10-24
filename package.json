@@ -1,6 +1,6 @@
 {
   "name": "arrow-render-to-string",
-  "version": "0.0.1-beta.4",
+  "version": "0.0.1",
   "repository": "git@github.com:barelyhuman/arrow-render-to-string.git",
   "license": "MIT",
   "author": "Reaper <ahoy@barelyhuman.dev>",
