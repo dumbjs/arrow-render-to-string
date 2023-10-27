@@ -1,10 +1,14 @@
+// aliased utils
+const isA = Array.isArray
+const replace = (n, ...e) => n.replace(...e)
+
 // https://github.com/justin-schroeder/arrow-js/blob/31c1861075aabe29b67620b58a33c7fecb209c8f/src/html.ts#L166C1-L166C23
 const delimiter = '➳❍'
 const delimiterComment = `<!--${delimiter}-->`
 
 //FIXME: Don't really need to handle
-const bookend = '❍⇚'
-const bookendComment = `<!--${bookend}-->`
+// const bookend = '❍⇚'
+// const bookendComment = `<!--${bookend}-->`
 
 const eventRegex = /(@)(\w+)=["']$/
 
@@ -21,12 +25,12 @@ export function renderToString(template) {
 
   let htmlString = renderResult[0]
   const expressions = renderResult[1]
-  const evntsOnIndex = []
   let index = -1
 
   if (!expressions.length) return htmlString
 
-  return htmlString.replace(
+  return replace(
+    htmlString,
     new RegExp(delimiterComment, 'g'),
     (...matchers) => {
       const str = matchers[0]
@@ -49,11 +53,12 @@ function interpolateExpressions(htmlString, expressionInstance) {
   const isExpressionPartial = isExpressionReactive.isT
 
   if (!isExpressionReactive) {
-    return htmlString.replace(delimiterComment, expressionInstance())
+    return replace(htmlString, delimiterComment, expressionInstance())
   }
 
   if (isExpressionPartial) {
-    return htmlString.replace(
+    return replace(
+      htmlString,
       delimiterComment,
       renderToString(expressionInstance.e)
     )
@@ -64,12 +69,12 @@ function interpolateExpressions(htmlString, expressionInstance) {
   if (
     typeof watcherReturn !== 'object' &&
     typeof watcherReturn !== 'function' &&
-    !Array.isArray(watcherReturn)
+    !isA(watcherReturn)
   ) {
-    return htmlString.replace(delimiterComment, watcherReturn)
+    return replace(htmlString, delimiterComment, watcherReturn)
   }
 
-  if (Array.isArray(watcherReturn)) {
+  if (isA(watcherReturn)) {
     const result = watcherReturn.map(x => {
       if ('isT' in x) {
         return renderToString(x)
@@ -81,6 +86,6 @@ function interpolateExpressions(htmlString, expressionInstance) {
 
   if (watcherReturn && watcherReturn.isT) {
     const _nestedHtmlString = renderToString(watcherReturn)
-    return htmlString.replace(delimiterComment, _nestedHtmlString)
+    return replace(htmlString, delimiterComment, _nestedHtmlString)
   }
 }

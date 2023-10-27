@@ -6,7 +6,7 @@ module.exports = defineConfig({
   format: ['cjs', 'esm'],
   clean: true,
   dts: true,
-  target: 'node12.22',
+  target: 'node12',
   onSuccess() {
     const out = execSync('node scripts/generate-package.js')
     console.log(out.toString())

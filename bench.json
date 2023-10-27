@@ -1,0 +1,250 @@
+{
+  "manufacturer": "Apple",
+  "brand": "M1",
+  "memory": {
+    "total": 8589934592,
+    "totalPretty": "8.59 GB"
+  },
+  "benchmarks": {
+    "simple": [
+      {
+        "name": "arrow-render-to-string",
+        "options": {
+          "async": false,
+          "defer": false,
+          "delay": 0.005,
+          "initCount": 1,
+          "maxTime": 5,
+          "minSamples": 5,
+          "minTime": 0.05
+        },
+        "async": false,
+        "defer": false,
+        "delay": 0.005,
+        "initCount": 1,
+        "maxTime": 5,
+        "minSamples": 5,
+        "minTime": 0.05,
+        "id": 1,
+        "stats": {
+          "moe": 2.879228632450289e-10,
+          "rme": 0.5081758431786834,
+          "sem": 1.4689942002297394e-10,
+          "deviation": 1.431798436335639e-9,
+          "mean": 5.665811689198896e-8,
+          "variance": 2.050046762293181e-18
+        },
+        "times": {
+          "cycle": 0.05152058548469097,
+          "elapsed": 5.419,
+          "period": 5.665811689198896e-8,
+          "timeStamp": 1698394509214
+        },
+        "running": false,
+        "count": 909324,
+        "cycles": 6,
+        "hz": 17649721.784900915
+      }
+    ],
+    "partials": [
+      {
+        "name": "arrow-render-to-string",
+        "options": {
+          "async": false,
+          "defer": false,
+          "delay": 0.005,
+          "initCount": 1,
+          "maxTime": 5,
+          "minSamples": 5,
+          "minTime": 0.05
+        },
+        "async": false,
+        "defer": false,
+        "delay": 0.005,
+        "initCount": 1,
+        "maxTime": 5,
+        "minSamples": 5,
+        "minTime": 0.05,
+        "id": 2,
+        "stats": {
+          "moe": 9.661422433105246e-8,
+          "rme": 9.213971336508356,
+          "sem": 4.929297159747575e-8,
+          "deviation": 3.881332464919646e-7,
+          "mean": 0.0000010485622409985109,
+          "variance": 1.5064741703239214e-13
+        },
+        "times": {
+          "cycle": 0.08367946108064515,
+          "elapsed": 5.55,
+          "period": 0.0000010485622409985109,
+          "timeStamp": 1698394514633
+        },
+        "running": false,
+        "count": 79804,
+        "cycles": 9,
+        "hz": 953686.8303094086
+      }
+    ],
+    "dynamic-partials": [
+      {
+        "name": "arrow-render-to-string",
+        "options": {
+          "async": false,
+          "defer": false,
+          "delay": 0.005,
+          "initCount": 1,
+          "maxTime": 5,
+          "minSamples": 5,
+          "minTime": 0.05
+        },
+        "async": false,
+        "defer": false,
+        "delay": 0.005,
+        "initCount": 1,
+        "maxTime": 5,
+        "minSamples": 5,
+        "minTime": 0.05,
+        "id": 3,
+        "stats": {
+          "moe": 3.862446663268995e-8,
+          "rme": 2.5992455733708555,
+          "sem": 1.9706360526882627e-8,
+          "deviation": 1.8168366696903606e-7,
+          "mean": 0.0000014859875891834049,
+          "variance": 3.30089548433156e-14
+        },
+        "times": {
+          "cycle": 0.059176483764050734,
+          "elapsed": 5.502,
+          "period": 0.0000014859875891834049,
+          "timeStamp": 1698394520184
+        },
+        "running": false,
+        "count": 39823,
+        "cycles": 5,
+        "hz": 672953.1304830952
+      }
+    ],
+    "reactive": [
+      {
+        "name": "arrow-render-to-string",
+        "options": {
+          "async": false,
+          "defer": false,
+          "delay": 0.005,
+          "initCount": 1,
+          "maxTime": 5,
+          "minSamples": 5,
+          "minTime": 0.05
+        },
+        "async": false,
+        "defer": false,
+        "delay": 0.005,
+        "initCount": 1,
+        "maxTime": 5,
+        "minSamples": 5,
+        "minTime": 0.05,
+        "id": 4,
+        "stats": {
+          "moe": 1.8690875202617585e-8,
+          "rme": 1.4693377492258417,
+          "sem": 9.536160817662033e-9,
+          "deviation": 9.046796495239702e-8,
+          "mean": 0.0000012720611862361361,
+          "variance": 8.184452682628135e-15
+        },
+        "times": {
+          "cycle": 0.054909793165069054,
+          "elapsed": 5.481,
+          "period": 0.0000012720611862361361,
+          "timeStamp": 1698394525687
+        },
+        "running": false,
+        "count": 43166,
+        "cycles": 7,
+        "hz": 786125.7074896453
+      }
+    ],
+    "dynamic-reactive": [
+      {
+        "name": "arrow-render-to-string",
+        "options": {
+          "async": false,
+          "defer": false,
+          "delay": 0.005,
+          "initCount": 1,
+          "maxTime": 5,
+          "minSamples": 5,
+          "minTime": 0.05
+        },
+        "async": false,
+        "defer": false,
+        "delay": 0.005,
+        "initCount": 1,
+        "maxTime": 5,
+        "minSamples": 5,
+        "minTime": 0.05,
+        "id": 5,
+        "stats": {
+          "moe": 1.7957427814922795e-8,
+          "rme": 0.6746270864729684,
+          "sem": 9.161952966797345e-9,
+          "deviation": 8.496445648775359e-8,
+          "mean": 0.0000026618302429578374,
+          "variance": 7.218958866259374e-15
+        },
+        "times": {
+          "cycle": 0.06017333447230487,
+          "elapsed": 5.334,
+          "period": 0.0000026618302429578374,
+          "timeStamp": 1698394531169
+        },
+        "running": false,
+        "count": 22606,
+        "cycles": 3,
+        "hz": 375681.3578347489
+      }
+    ],
+    "real": [
+      {
+        "name": "arrow-render-to-string",
+        "options": {
+          "async": false,
+          "defer": false,
+          "delay": 0.005,
+          "initCount": 1,
+          "maxTime": 5,
+          "minSamples": 5,
+          "minTime": 0.05
+        },
+        "async": false,
+        "defer": false,
+        "delay": 0.005,
+        "initCount": 1,
+        "maxTime": 5,
+        "minSamples": 5,
+        "minTime": 0.05,
+        "id": 6,
+        "stats": {
+          "moe": 8.844987473114782e-8,
+          "rme": 1.479937366657919,
+          "sem": 4.512748710772848e-8,
+          "deviation": 4.42157267151844e-7,
+          "mean": 0.000005976595815733101,
+          "variance": 1.9550304889518714e-13
+        },
+        "times": {
+          "cycle": 0.05340686020939099,
+          "elapsed": 5.321,
+          "period": 0.000005976595815733101,
+          "timeStamp": 1698394536504
+        },
+        "running": false,
+        "count": 8936,
+        "cycles": 3,
+        "hz": 167319.3287335155
+      }
+    ]
+  }
+}
