@@ -1,5 +1,7 @@
 # arrow-render-to-string
 
+![](https://deno.bundlejs.com/badge?q=arrow-render-to-string&treeshake=[{+renderToString+}])
+
 Render [ArrowJS](http://arrow-js.com) templates and partials to string.
 
 Works wherever JS does.
