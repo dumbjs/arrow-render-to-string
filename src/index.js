@@ -16,7 +16,7 @@ export function renderToString(template) {
   const isT = 'isT' in template
 
   // FIXME: not a template, throw an error instead,
-  //  move the fault tolerant behavior to another function
+  // move the fault tolerant behavior to another function
   if (!isT) {
     return ''
   }

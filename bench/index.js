@@ -13,6 +13,7 @@ importArrow().then(async _ => {
   createSuite('reactive', () => reactiveView())
   createSuite('dynamic-reactive', () => dynamicReactiveView())
   createSuite('real', () => realWorld())
+  createSuite('goBonkers', () => goBonkers())
   const cpuInfo = await sysInfo.cpu()
   const memInfo = await sysInfo.mem()
   const base = {
@@ -117,6 +118,46 @@ function realWorld() {
     <header>
       <nav>
         <ul></ul>
+      </nav>
+    </header>
+  `
+
+  const state = reactive({
+    count: 0,
+  })
+
+  const Counter = () => {
+    return html`
+      <button @click="${() => (state.count += 1)}">${() => state.count}</button>
+    `
+  }
+
+  return Layout(html` ${() => NavBar()} ${() => Counter()} `)
+}
+
+function goBonkers() {
+  const Layout = child => html`
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+      </head>
+      <body>
+        ${child}
+      </body>
+    </html>
+  `
+
+  const links = Array.from(new Array(1000).fill(0)).map((x, ind) => ind)
+  const NavBar = () => html`
+    <header>
+      <nav>
+        <ul>
+          ${() =>
+            links.map(x => html`<li>${links.map(y => html`<p>${y}</p>`)}</li>`)}
+        </ul>
       </nav>
     </header>
   `
