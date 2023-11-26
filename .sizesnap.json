@@ -1,8 +1,8 @@
 {
   "dist/index.d.ts": {
-    "size": "79B",
-    "brotli": "57B",
-    "gzip": "82B"
+    "size": "157B",
+    "brotli": "98B",
+    "gzip": "133B"
   },
   "dist/index.js": {
     "size": "2.811KB",

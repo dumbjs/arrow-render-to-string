@@ -12,6 +12,11 @@ const delimiterRegexGlobal = new RegExp(delimiterComment, 'g')
 
 const eventRegex = /(@)(\w+)=["']$/
 
+/**
+ *
+ * @param {import("@arrow-js/core").ArrowTemplate} template
+ * @return {string}
+ */
 export function renderToString(template) {
   const isT = 'isT' in template
   // FIXME: not a template, throw an error instead,
