@@ -3,14 +3,12 @@
 const { renderToString } = require('../dist/index.js')
 const fs = require('fs')
 
-let html, reactive, pretty
+let html, reactive
 
 async function importArrow() {
   const mod = await import('@arrow-js/core')
-  const pmod = await import('pretty-bytes')
   html = mod.html
   reactive = mod.reactive
-  pretty = pmod.default
   return
 }
 
@@ -35,15 +33,15 @@ importArrow().then(_ => {
 
   const links = Array.from(new Array(10000).fill(0)).map((x, ind) => ind)
   const outerLinks = Array.from(new Array(100).fill(0)).map((x, ind) => ind)
+  const outerLinkComponents = outerLinks.map(
+    _ => html`<li>${links.map(y => html`<p>${y}</p> `)}</li>`
+  )
   const NavBar = () =>
     html`
       <header>
         <nav>
           <ul>
-            ${() =>
-              outerLinks.map(
-                _ => html`<li>${links.map(y => html`<p>${y}</p> `)}</li>`
-              )}
+            ${outerLinkComponents}
           </ul>
         </nav>
       </header>
@@ -58,8 +56,8 @@ importArrow().then(_ => {
       <button @click="${() => (state.count += 1)}">${() => state.count}</button>
     `
   }
-
-  const out = renderToString(NavBar())
+  const template = NavBar()
+  const out = renderToString(template)
   const str = fs.createWriteStream('example.html', 'utf8')
   str.write(out)
   str.end()
