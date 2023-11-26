@@ -1,10 +1,10 @@
 // aliased utils
 const isA = Array.isArray
-const replace = (n, ...e) => n.replace(...e)
 
 // https://github.com/justin-schroeder/arrow-js/blob/31c1861075aabe29b67620b58a33c7fecb209c8f/src/html.ts#L166C1-L166C23
 const delimiter = '➳❍'
 const delimiterComment = `<!--${delimiter}-->`
+const delimiterRegexGlobal = new RegExp(delimiterComment, 'g')
 
 //FIXME: Don't really need to handle
 // const bookend = '❍⇚'
@@ -14,7 +14,6 @@ const eventRegex = /(@)(\w+)=["']$/
 
 export function renderToString(template) {
   const isT = 'isT' in template
-
   // FIXME: not a template, throw an error instead,
   // move the fault tolerant behavior to another function
   if (!isT) {
@@ -25,67 +24,68 @@ export function renderToString(template) {
 
   let htmlString = renderResult[0]
   const expressions = renderResult[1]
-  let index = -1
 
   if (!expressions.length) return htmlString
 
-  return replace(
-    htmlString,
-    new RegExp(delimiterComment, 'g'),
-    (...matchers) => {
-      const str = matchers[0]
-      const matchedAt = matchers[1]
-      const matchedString = matchers[2]
-      index += 1
-
-      const beforeDelim = matchedString.slice(0, matchedAt)
-      const immediatelyFollowed = eventRegex.test(beforeDelim)
-      if (immediatelyFollowed) {
-        return str
-      }
-      return interpolateExpressions(str, expressions[index])
-    }
-  )
+  return htmlString.replace(delimiterRegexGlobal, matchReplace(expressions))
 }
 
-function interpolateExpressions(htmlString, expressionInstance) {
+function matchReplace(expressions) {
+  let index = -1
+  return (...matchers) => {
+    const str = matchers[0]
+    const matchedAt = matchers[1]
+    const matchedString = matchers[2]
+    index += 1
+
+    const beforeDelim = matchedString.slice(0, matchedAt)
+    const immediatelyFollowed = eventRegex.test(beforeDelim)
+
+    // check if we are on a event handler delimiter
+    // while rendering strings, we don't need this information
+    // so we remove it
+    if (immediatelyFollowed) {
+      return ''
+    }
+
+    return interpolateExpressions(expressions[index])
+  }
+}
+
+// Replace the htmlString's next occuring
+function interpolateExpressions(expressionInstance) {
   const isExpressionReactive = expressionInstance && expressionInstance.e
   const isExpressionPartial = isExpressionReactive.isT
 
   if (!isExpressionReactive) {
-    return replace(htmlString, delimiterComment, expressionInstance())
+    return expressionInstance()
   }
 
   if (isExpressionPartial) {
-    return replace(
-      htmlString,
-      delimiterComment,
-      renderToString(expressionInstance.e)
-    )
+    return renderToString(expressionInstance.e)
   }
 
   const watcherReturn = expressionInstance.e()
 
   if (
     typeof watcherReturn !== 'object' &&
-    typeof watcherReturn !== 'function' &&
-    !isA(watcherReturn)
+    typeof watcherReturn !== 'function'
   ) {
-    return replace(htmlString, delimiterComment, watcherReturn)
+    return watcherReturn
   }
 
   if (isA(watcherReturn)) {
-    const result = watcherReturn.map(x => {
+    return watcherReturn.reduce((acc, x) => {
       if ('isT' in x) {
-        return renderToString(x)
+        return acc + renderToString(x)
       }
-      return x
-    })
-    return result.join('')
+      return acc + x
+    }, '')
   }
 
   if (watcherReturn && watcherReturn.isT) {
-    const _nestedHtmlString = renderToString(watcherReturn)
-    return replace(htmlString, delimiterComment, _nestedHtmlString)
+    return renderToString(watcherReturn)
   }
+
+  return ''
 }

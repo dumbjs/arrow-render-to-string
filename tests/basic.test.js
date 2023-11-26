@@ -130,7 +130,7 @@ test('events', async () => {
 
   await inlineSnapshot(
     out,
-    `<button @click="<!--➳❍-->">
+    `<button @click="">
     0
   </button>`
   )
@@ -150,8 +150,8 @@ test('multiple events', async () => {
   await inlineSnapshot(
     out,
     `<button
-    @click="<!--➳❍-->"
-    @focus="<!--➳❍-->"
+    @click=""
+    @focus=""
   >
     0
   </button>`
@@ -181,12 +181,12 @@ test('nested events', async () => {
     out,
     `<button
     value="1"
-    @click="<!--➳❍-->"
-    @focus="<!--➳❍-->"
+    @click=""
+    @focus=""
   >
     0 
     <input
-      @focus="<!--➳❍-->"
+      @focus=""
     />
   
   </button>`
