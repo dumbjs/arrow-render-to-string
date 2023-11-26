@@ -1,6 +1,7 @@
 # arrow-render-to-string
 
-![](https://deno.bundlejs.com/badge?q=arrow-render-to-string&treeshake=[{+renderToString+}])
+![](https://img.shields.io/bundlephobia/min/arrow-render-to-string?display_name=tag&sort=semver&style=flat&colorA=181819&colorB=181819)
+![](https://img.shields.io/npm/v/arrow-render-to-string?display_name=tag&sort=semver&style=flat&colorA=181819&colorB=181819)
 
 Render [ArrowJS](http://arrow-js.com) templates and partials to string.
 
