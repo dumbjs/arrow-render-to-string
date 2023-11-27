@@ -1,4 +1,3 @@
-
 <p>
   <img width="1191" alt="Frame 13" src="https://github.com/dumbjs/arrow-render-to-string/assets/43572006/3a8910fb-4a23-49cc-8407-f8c296275ba7">
 </p>
