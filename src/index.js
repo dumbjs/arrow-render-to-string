@@ -35,12 +35,11 @@ function matchReplace(expressions) {
     index += 1
 
     const beforeDelim = matchers[2].slice(0, matchers[1])
-    const immediatelyFollowed = eventRegex.test(beforeDelim)
 
     // check if we are on a event handler delimiter
     // while rendering strings, we don't need this information
     // so we remove it
-    if (immediatelyFollowed) {
+    if (eventRegex.test(beforeDelim)) {
       return ''
     }
 
