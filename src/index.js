@@ -18,17 +18,11 @@ const eventRegex = /(@)(\w+)=["']$/
  * @return {string}
  */
 export function renderToString(template) {
-  const isT = 'isT' in template
-  // FIXME: not a template, throw an error instead,
-  // move the fault tolerant behavior to another function
-  if (!isT) {
+  if (!('isT' in template)) {
     return ''
   }
 
-  const renderResult = template._h()
-
-  let htmlString = renderResult[0]
-  const expressions = renderResult[1]
+  const [htmlString, expressions] = template._h()
 
   if (!expressions.length) return htmlString
 
@@ -38,12 +32,9 @@ export function renderToString(template) {
 function matchReplace(expressions) {
   let index = -1
   return (...matchers) => {
-    const str = matchers[0]
-    const matchedAt = matchers[1]
-    const matchedString = matchers[2]
     index += 1
 
-    const beforeDelim = matchedString.slice(0, matchedAt)
+    const beforeDelim = matchers[2].slice(0, matchers[1])
     const immediatelyFollowed = eventRegex.test(beforeDelim)
 
     // check if we are on a event handler delimiter
