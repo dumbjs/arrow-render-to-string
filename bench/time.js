@@ -56,8 +56,12 @@ importArrow().then(_ => {
       <button @click="${() => (state.count += 1)}">${() => state.count}</button>
     `
   }
+  console.time('template')
   const template = NavBar()
+  console.timeEnd('template')
+  console.time('render')
   const out = renderToString(template)
+  console.timeEnd('render')
   const str = fs.createWriteStream('example.html', 'utf8')
   str.write(out)
   str.end()
