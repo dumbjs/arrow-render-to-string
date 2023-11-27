@@ -43,12 +43,12 @@ function matchReplace(expressions) {
       return ''
     }
 
-    return interpolateExpressions(expressions[index])
+    return interpolateExpression(expressions[index])
   }
 }
 
 // Replace the htmlString's next occuring
-function interpolateExpressions(expressionInstance) {
+function interpolateExpression(expressionInstance) {
   const isExpressionReactive = expressionInstance && expressionInstance.e
   const isExpressionPartial = isExpressionReactive.isT
 
