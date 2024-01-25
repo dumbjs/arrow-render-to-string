@@ -23,6 +23,22 @@ test('variable', async () => {
   assert.is(out, '<p>hello world</p>')
 })
 
+test('variable attribute', async () => {
+  const checked = true
+  const tmp = html`<input
+    type="checkbox"
+    ${() => (checked ? 'checked' : '')}
+  />`
+  const out = renderToString(tmp)
+  assert.is(
+    out,
+    `<input
+    type="checkbox"
+    checked
+  />`
+  )
+})
+
 test('reactive variable type string', async () => {
   const rVar = reactive({ message: 'hello world' })
   const tmp = html`<p>${rVar.message}</p>`
