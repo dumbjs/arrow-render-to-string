@@ -28,4 +28,34 @@ test('Render 1000 elements', async () => {
   )
 })
 
+test('Render nested elements', async () => {
+  const comp1 = () => {
+    return html`<h1>Component 1</h1>`
+  }
+
+  const comp2 = html` <h1>Component 2</h1> `
+
+  const layout = ({ children }) => {
+    return html`${children} ${() => children}`
+  }
+
+  const reactiveOut = renderToString(
+    html`${() => layout({ children: html`${comp1()}${comp2}` })}`
+  )
+
+  const staticOut = renderToString(
+    html`${layout({ children: html`${comp1()}${comp2}` })}`
+  )
+
+  await inlineSnapshot(
+    reactiveOut,
+    `<h1>Component 1</h1> <h1>Component 2</h1>  <h1>Component 1</h1> <h1>Component 2</h1> `
+  )
+
+  await inlineSnapshot(
+    staticOut,
+    `<h1>Component 1</h1> <h1>Component 2</h1>  <h1>Component 1</h1> <h1>Component 2</h1> `
+  )
+})
+
 test.run()

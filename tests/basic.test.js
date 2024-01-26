@@ -1,6 +1,7 @@
 import { test } from 'uvu'
 import * as assert from 'uvu/assert'
 import { html, reactive } from '@arrow-js/core'
+
 import { renderToString } from '../src/index.js'
 import { inlineSnapshot } from 'uvu-inline-snapshot'
 
@@ -238,6 +239,32 @@ test('stringify nested array of templates', async () => {
       </div>
     </div>
   `
+  )
+})
+
+test('reactive class attribute', async () => {
+  const state = reactive({ count: 0 })
+
+  const comp = html`<div class="${() => (state.count > 10 ? 'active' : '')}">
+    Hello
+  </div>`
+
+  const nonClass = renderToString(comp)
+  state.count = 11
+  const withClass = renderToString(comp)
+
+  await inlineSnapshot(
+    nonClass,
+    `<div class="">
+    Hello
+  </div>`
+  )
+
+  await inlineSnapshot(
+    withClass,
+    `<div class="active">
+    Hello
+  </div>`
   )
 })
 
