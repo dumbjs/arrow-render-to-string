@@ -20,8 +20,8 @@
     "dev": "tsdown --watch",
     "next": "bumpp",
     "fix": "prettier --write .",
-    "test": "uvu -r esm tests",
-    "test:ci": "c8 uvu -r esm tests ",
+    "test": "uvu tests",
+    "test:ci": "c8 uvu tests ",
     "prepare": "husky install"
   },
   "publishConfig": {
