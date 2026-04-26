@@ -1,6 +1,6 @@
 {
   "name": "arrow-render-to-string",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": "git@github.com:dumbjs/arrow-render-to-string.git",
   "license": "MIT",
   "author": "Reaper <ahoy@barelyhuman.dev>",
