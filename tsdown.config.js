@@ -1,4 +1,4 @@
-const { defineConfig } = require('tsup')
+const { defineConfig } = require('tsdown')
 const execSync = require('child_process').execSync
 
 module.exports = defineConfig({
@@ -10,8 +10,5 @@ module.exports = defineConfig({
   onSuccess() {
     const out = execSync('node scripts/generate-package.js')
     console.log(out.toString())
-
-    const outSize = execSync('npm run size')
-    console.log(outSize.toString())
   },
 })
